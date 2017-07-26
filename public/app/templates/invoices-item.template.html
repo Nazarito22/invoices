@@ -1,0 +1,61 @@
+<div ng-controller="InvoicesItemCtrl">
+    <div class="col-md-3">
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <form name="invoicesAddProduct">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="pull-left">Product</label>
+                            <input type="hidden" name="name" ng-model="invItem.invoice_id" value="{{id}}">
+                            <select class="form-control"
+                                    ng-model="invItem.product_id" required>
+                                <option value="" disabled>
+                                    Choose product
+                                </option>
+                                <option ng-repeat="product in products" value="{{product.id}}">
+                                    {{product.name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="pull-left">Quantity</label>
+                            <input type="number" min="1" ng-init="invItem.quantity = 1"
+                                   class="form-control"
+                                   ng-model="invItem.quantity" required>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-success"
+                                ng-click="addProduct(invItem,invoicesAddProduct)">Add product
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="col-md-5">Product ID</div>
+                <div class="col-md-4">Quantity</div>
+                <div class="col-md-3">
+                    Actions
+                </div>
+            </div>
+            <div class="panel-body">
+                <div ng-repeat="invoiceItem in invoiceItems | orderBy: '-id'">
+                    <div class="item">
+                        <div class="col-md-5">{{invoiceItem.product_id}}</div>
+                        <div class="col-md-4">{{invoiceItem.quantity}}</div>
+                        <div class="col-md-3 text-right">
+                            <button class="btn btn-danger" ng-click="removeProduct(invoiceItem)"><i
+                                    class="glyphicon glyphicon-remove"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

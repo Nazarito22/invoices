@@ -1,0 +1,24 @@
+.panel {
+    text-align: center;
+    overflow: hidden;
+}
+
+.panel-heading {
+    overflow: hidden;
+}
+
+.m-t-20 {
+    margin-top: 20px;
+}
+
+.panel-body {
+    overflow: hidden;
+    text-align: center;
+    padding: 0;
+}
+
+.item {
+    overflow: hidden;
+    padding: 20px 0;
+    border-bottom: 1px solid #ddd;
+}

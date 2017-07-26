@@ -1,0 +1,67 @@
+<div ng-controller="CustomersCtrl">
+    <div class="col-md-3">
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+
+                <form name="customersForm">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="pull-left">Customer name</label>
+                            <input type="text" class="form-control" ng-model="customer.name" required>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="pull-left">Customer adress</label>
+                            <input type="text" class="form-control" ng-model="customer.address" required>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="pull-left">Customer phone</label>
+                            <input type="text" class="form-control" ng-model="customer.phone" required>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-success center-block" ng-click="addItem(customer,customersForm)">
+                            Add
+                            customer
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <form name="editCustomer">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="col-md-3">Customer name</div>
+                    <div class="col-md-3">Adress</div>
+                    <div class="col-md-3">Phone</div>
+                    <div class="col-md-3">
+                        Actions
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div ng-repeat="customer in customers | orderBy: '-id'">
+                        <div class="item">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-3 text-center">{{customer.name}}</div>
+                                    <div class="col-md-3 text-center">{{customer.address}}</div>
+                                    <div class="col-md-3 text-center">{{customer.phone}}</div>
+                                    <div class="col-md-3 text-right">
+                                        <button class="btn btn-danger" ng-click="removeItem(customer)"><i
+                                                class="glyphicon glyphicon-remove"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,84 @@
+<div ng-controller="InvoicesCtrl">
+    <div class="col-md-3">
+        <div class="row">
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <form name="invoicesForm">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="pull-left">Customer</label>
+                                <select class="form-control" placeholder="Customer" ng-model="invo.customer_id" required>
+                                    <option value="" disabled>
+                                        Choose customer
+                                    </option>
+                                    <option ng-repeat="customer in customers" ng-selected="$first"
+                                            value="{{customer.id}}">
+                                        {{customer.name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="pull-left">Discount</label>
+                                <input type="number" step="0.1" min="0" max="100"
+                                       class="form-control" placeholder="Discount" value="0"
+                                       ng-model="invo.discount" ng-init="invo.discount = 0" required>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-success center-block"
+                                    ng-click="addItem(invo,invoicesForm)">Add invoice
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="col-md-3">Customer ID</div>
+                <div class="col-md-3">Discount</div>
+                <div class="col-md-3">Total</div>
+                <div class="col-md-3">
+                    Actions
+                </div>
+            </div>
+
+            <div class="panel-body">
+                <div ng-repeat="invoice in invoices | orderBy: '-id'">
+                    <div class="item">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-3">{{invoice.customer_id}}</div>
+                                <div class="col-md-3">{{invoice.discount}} %</div>
+                                <div class="col-md-3">{{invoice.total}} $</div>
+                                <div class="col-md-3 text-right">
+                                    <a class="btn btn-primary" href="/invoices/{{invoice.id}}" title="View invoice">
+                                        <i class="glyphicon glyphicon-pencil"></i>
+                                    </a>
+                                    <button class="btn btn-danger" title="Remove invoice"
+                                            ng-click="removeItem(invoice)">
+                                        <i class="glyphicon glyphicon-remove"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 m-t-20">
+            <div class="row">
+                <div>
+                    <ul class="nav nav-pills" role="tablist">
+                        <li role="presentation" class="active"><a href="#">Total: <span
+                                class="badge">{{totalInvoice}} $</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
